@@ -2,10 +2,12 @@ package _06_Intro_To_Hash_Maps;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 public class _02_LogSearch implements ActionListener {
 	/*
@@ -28,22 +30,27 @@ public class _02_LogSearch implements ActionListener {
 	 * input dialog. If this ID exists in the HashMap, remove it. Otherwise, notify
 	 * the user that the ID is not in the list.
 	 */
-	JFrame frame = new JFrame();
-	JButton addEntry = new JButton();
+	HashMap<Integer, String> logSearch = new HashMap<Integer, String>();
+	static JFrame frame = new JFrame();
+	static JPanel panel = new JPanel();
+	static JButton addEntry = new JButton();
 	JButton searchID = new JButton();
 	JButton viewList = new JButton();
 	JButton removeEntry = new JButton();
 
 	public void start() {
-		frame.add(addEntry);
-		frame.add(searchID);
-		frame.add(viewList);
-		frame.add(removeEntry);
+	
+		panel.add(addEntry);
+		panel.add(searchID);
+		panel.add(viewList);
+		panel.add(removeEntry);
+			frame.add(panel);
+		
 		addEntry.addActionListener(this);
 		searchID.addActionListener(this);
 		viewList.addActionListener(this);
 		removeEntry.addActionListener(this);
-
+        frame.setVisible(true);
 	}
 
 	@Override
@@ -52,18 +59,33 @@ public class _02_LogSearch implements ActionListener {
 		if (e.getSource() == addEntry) {
                String ID = JOptionPane.showInputDialog("Enter an ID number");
                String name = JOptionPane.showInputDialog("Enter a name");
+               int IDnum = Integer.parseInt(ID);
+               logSearch.put(IDnum, name);
                
-               
 		}
-		if (e.getSource() == addEntry) {
-
+		if (e.getSource() == searchID) {
+           String IDnum = JOptionPane.showInputDialog("Enter an ID number");
+           if(logSearch.containsKey(IDnum)) {
+        	   
+           }
+           else {
+        	   JOptionPane.showMessageDialog(null, "That name does not exist");
+           }
 		}
-		if (e.getSource() == addEntry) {
-
+		if (e.getSource() == viewList) {
+			for(Integer i : logSearch.keySet()){
+	            System.out.println("ID: " + i + ", name: " + logSearch.get(i));
 		}
-		if (e.getSource() == addEntry) {
-
+		if (e.getSource() == removeEntry) {
+			 String IDnum = JOptionPane.showInputDialog("Enter an ID number");
+			  if(logSearch.containsKey(IDnum)){
+				  logSearch.remove(IDnum);
+			  }
+			  else {
+				  JOptionPane.showMessageDialog(null, "That name does not exist");
+			  }
 		}
 
 	}
+}
 }
