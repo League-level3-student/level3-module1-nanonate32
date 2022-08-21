@@ -1,5 +1,6 @@
 package _06_Intro_To_Hash_Maps;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
@@ -45,12 +46,19 @@ public class _02_LogSearch implements ActionListener {
 		panel.add(viewList);
 		panel.add(removeEntry);
 			frame.add(panel);
+		addEntry.setText( "Add Entry");
+		searchID.setText( "Search ID");
+		viewList.setText( "View List");
+		removeEntry.setText( "Remove Entry");
 		
 		addEntry.addActionListener(this);
 		searchID.addActionListener(this);
 		viewList.addActionListener(this);
 		removeEntry.addActionListener(this);
+		frame.setPreferredSize(new Dimension(500,500));
         frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
 	}
 
 	@Override
@@ -66,7 +74,7 @@ public class _02_LogSearch implements ActionListener {
 		if (e.getSource() == searchID) {
            String IDnum = JOptionPane.showInputDialog("Enter an ID number");
            if(logSearch.containsKey(IDnum)) {
-        	   
+        	   System.out.println("ID: " + IDnum + ", name: " + logSearch.get(IDnum));
            }
            else {
         	   JOptionPane.showMessageDialog(null, "That name does not exist");
