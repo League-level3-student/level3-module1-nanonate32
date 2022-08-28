@@ -40,60 +40,73 @@ public class _02_LogSearch implements ActionListener {
 	JButton removeEntry = new JButton();
 
 	public void start() {
-	
+
 		panel.add(addEntry);
 		panel.add(searchID);
 		panel.add(viewList);
 		panel.add(removeEntry);
-			frame.add(panel);
-		addEntry.setText( "Add Entry");
-		searchID.setText( "Search ID");
-		viewList.setText( "View List");
-		removeEntry.setText( "Remove Entry");
-		
+		frame.add(panel);
+		addEntry.setText("Add Entry");
+		searchID.setText("Search ID");
+		viewList.setText("View List");
+		removeEntry.setText("Remove Entry");
+
 		addEntry.addActionListener(this);
 		searchID.addActionListener(this);
 		viewList.addActionListener(this);
 		removeEntry.addActionListener(this);
-		frame.setPreferredSize(new Dimension(500,500));
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
+		frame.setPreferredSize(new Dimension(500, 500));
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.pack();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getSource() == addEntry) {
-               String ID = JOptionPane.showInputDialog("Enter an ID number");
-               String name = JOptionPane.showInputDialog("Enter a name");
-               int IDnum = Integer.parseInt(ID);
-               logSearch.put(IDnum, name);
-               
+			String ID = JOptionPane.showInputDialog("Enter an ID number");
+			String name = JOptionPane.showInputDialog("Enter a name");
+			int IDnum = Integer.parseInt(ID);
+			logSearch.put(IDnum, name);
+
 		}
 		if (e.getSource() == searchID) {
-           String IDnum = JOptionPane.showInputDialog("Enter an ID number");
-           if(logSearch.containsKey(IDnum)) {
-        	   System.out.println("ID: " + IDnum + ", name: " + logSearch.get(IDnum));
-           }
-           else {
-        	   JOptionPane.showMessageDialog(null, "That name does not exist");
-           }
+			String IDnums = JOptionPane.showInputDialog("Enter an ID number");
+			int IDnumss = Integer.parseInt(IDnums);
+			if (logSearch.containsKey(IDnumss)) {
+				JOptionPane.showMessageDialog(null, "ID: " + IDnumss + ", name: " + logSearch.get(IDnumss));
+			} else {
+				JOptionPane.showMessageDialog(null, "That name does not exist");
+			}
 		}
+		
 		if (e.getSource() == viewList) {
-			for(Integer i : logSearch.keySet()){
-	            System.out.println("ID: " + i + ", name: " + logSearch.get(i));
+			String values = "";
+			for (Integer i : logSearch.keySet()) {
+				String value = "ID: " + i + ", name: " + logSearch.get(i);
+			values += value + "/n"  
+					
+					
+					
+					
+					
+					;
+			}
+			
+				JOptionPane.showMessageDialog(null, values);
 		}
 		if (e.getSource() == removeEntry) {
-			 String IDnum = JOptionPane.showInputDialog("Enter an ID number");
-			  if(logSearch.containsKey(IDnum)){
-				  logSearch.remove(IDnum);
-			  }
-			  else {
-				  JOptionPane.showMessageDialog(null, "That name does not exist");
-			  }
+			System.out.println("teest");
+			String IDnum = JOptionPane.showInputDialog("Enter an ID number");
+			int IDnums = Integer.parseInt(IDnum);
+			if (logSearch.containsKey(IDnums)) {
+				System.out.println("tate");
+				logSearch.remove(IDnums);
+			} else {
+				JOptionPane.showMessageDialog(null, "That name does not exist");
+			}
 		}
 
 	}
-}
 }
