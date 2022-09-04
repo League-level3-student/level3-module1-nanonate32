@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,7 +20,7 @@ public class GameBoard extends JFrame implements ActionListener {
     static Card secondSelectedCard = null;
     
     // 1. Initialize TOTAL_CARDS to 2;
-    static int TOTAL_CARDS = 0;
+    static int TOTAL_CARDS = 2;
     
     ArrayList<Card> cards;
     
@@ -32,6 +34,9 @@ public class GameBoard extends JFrame implements ActionListener {
     int seconds;
     
     public void setup() {
+    	panel = new JPanel();
+    	setupGui(cards);
+
         gameClock = new Timer(1000, this);
         updateTimer = new Timer(750, this);
         
@@ -42,19 +47,30 @@ public class GameBoard extends JFrame implements ActionListener {
         }
         
         // 2. Initialize the ArrayList of Cards declared above
+            cards = new ArrayList<Card>();
         
-        
-        // 3. Create TOTAL_CARDS number of objects each with a value of 1.
+        // 3. Create a number of card objects equal to TOTAL_CARDS and set each card to have a value of 1
+             for (int i = 0; i < TOTAL_CARDS; i++) {
+            	 cards.add(new Card(1));
+            	  cards.get(i).addActionListener(this);
+            	Collections.shuffle(cards);
+            	panel.add(cards.get(i));
+             }
+         	startGame();
+			} 
+				
+				
+			
         //    Also, add action listeners to each Card object and then add each
         //    of the Card objects to the ArrayList of Cards.
-        
+                
         
         // 4. Use Collections.shuffle() method to randomize the order of
         //    the cards in the ArrayList
-        
+       
         
         // 5. Initialize the panel variable declared above
-        
+  
         
         // 6. Add all of the Card objects to the panel
         
@@ -63,14 +79,18 @@ public class GameBoard extends JFrame implements ActionListener {
         
         
         // 8. Call the startGame() method to start the game
-        
-    }
+             
+    
 
     // 9. Fill in the drawCards method to draw all the cards in the ArrayList.
     //    Run your code and verify 2 cards are displayed and the game works.
     public void drawCards() {
-        
-    }
+        for (int i = 0; i < cards.size(); i++) {
+			cards.get(i).draw();
+		} 
+			
+		}
+    
     
     // 10. 
     // There are 52 cards in a normal sized deck of cards (not counting
