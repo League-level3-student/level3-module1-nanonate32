@@ -20,7 +20,7 @@ public class GameBoard extends JFrame implements ActionListener {
     static Card secondSelectedCard = null;
     
     // 1. Initialize TOTAL_CARDS to 2;
-    static int TOTAL_CARDS = 2;
+    static int TOTAL_CARDS = 52;
     
     ArrayList<Card> cards;
     
@@ -50,12 +50,21 @@ public class GameBoard extends JFrame implements ActionListener {
             cards = new ArrayList<Card>();
         
         // 3. Create a number of card objects equal to TOTAL_CARDS and set each card to have a value of 1
-             for (int i = 0; i < TOTAL_CARDS; i++) {
-            	 cards.add(new Card(1));
-            	  cards.get(i).addActionListener(this);
+             for (int i = 0; i < 4; i++) {
+            	 
+            	 for(int j = 2; j <= 14; j++) {
+                    Card c = new Card(j);
+                    cards.add(c);
+            	    c.addActionListener(this);
+            	 
+            	 }
+            	 
+            	   }
             	Collections.shuffle(cards);
-            	panel.add(cards.get(i));
-             }
+            	for (Card card : cards) {
+					panel.add(card);
+				}
+            	            
          	startGame();
 			} 
 				
@@ -87,6 +96,7 @@ public class GameBoard extends JFrame implements ActionListener {
     public void drawCards() {
         for (int i = 0; i < cards.size(); i++) {
 			cards.get(i).draw();
+			
 		} 
 			
 		}
@@ -99,7 +109,7 @@ public class GameBoard extends JFrame implements ActionListener {
     // 
     // Go back and modify the code to have a total of 52 cards and 4 copies
     // of each card, meaning x4 2s, x4 3s, x4 Jacks, ... one of each suit.
-    // You can use Jacks=11, Queens=12, Kings=12, Aces=13
+    // You can use Jacks=11, Queens=12, Kings=13, Aces=14
     // 
     // EXTRA: You can use real card faces images instead of numbers by using
     // the images in the CardImages folder and the setFaceUpIcon() method.
