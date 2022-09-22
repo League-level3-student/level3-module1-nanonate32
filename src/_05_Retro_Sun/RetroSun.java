@@ -15,7 +15,7 @@ public class RetroSun extends PApplet {
 	static final int HEIGHT = 600;
 
 	float y = width / 2;
-	float h = 40;
+	float h = map(y,1,40,  );
 	int sunCenterX = 400;
 	float sunRadius = 300;
 	float x = sunCenterX - sunRadius;
@@ -86,6 +86,16 @@ public class RetroSun extends PApplet {
 		updatePixels();
 		fill(bgColor);
 		rect(x, y, w, h);
+		
+		if(y >= -50) {
+			y-=1;
+			h-=2;
+		}
+		else {
+			y = 650;
+			h = 0;
+		}
+		
 		// The top of the sun is yellow (sunColors[0]) and the bottom
 		// of the sun is red (sunColors[sunColors.length - 1]
 
