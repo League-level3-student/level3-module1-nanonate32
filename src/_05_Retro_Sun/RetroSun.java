@@ -15,7 +15,7 @@ public class RetroSun extends PApplet {
 	static final int HEIGHT = 600;
 
 	float y = width / 2;
-	float h = map(y,1,40,  );
+	float h = 40;
 	int sunCenterX = 400;
 	float sunRadius = 300;
 	float x = sunCenterX - sunRadius;
@@ -74,7 +74,7 @@ public class RetroSun extends PApplet {
 		// we need to map the pixel to a color in our sunColors[] array
 		// (see 2nd gradient image in RetroSun.html)
 		for (int i = 0; i < pixels.length; i++) {
-			int y = i / width;
+			int y = i / WIDTH;
 
 			if (pixels[i] == sunColors[0]) {
 				float step = map(y, sunTopY, sunBottomY, 0, 1);
@@ -84,17 +84,7 @@ public class RetroSun extends PApplet {
 
 		}
 		updatePixels();
-		fill(bgColor);
-		rect(x, y, w, h);
 		
-		if(y >= -50) {
-			y-=1;
-			h-=2;
-		}
-		else {
-			y = 650;
-			h = 0;
-		}
 		
 		// The top of the sun is yellow (sunColors[0]) and the bottom
 		// of the sun is red (sunColors[sunColors.length - 1]
@@ -122,7 +112,17 @@ public class RetroSun extends PApplet {
 		 */
 
 		// Set the fill color to the background color
-
+fill(bgColor);
+		rect(x, y, w, h);
+		
+		if(y >= -50) {
+			y-=1;
+			h = map(y, y, y+h, 1, 40);
+		}
+		else {
+			y = 650;
+			h = 400;
+		}
 		// To draw each rectangle we need to find its x, y, width, height
 		// *The y position can be any value within the sun:
 		// float y = width / 2;
