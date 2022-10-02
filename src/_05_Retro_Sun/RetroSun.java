@@ -1,6 +1,7 @@
 package _05_Retro_Sun;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 import processing.core.PApplet;
 
@@ -26,8 +27,8 @@ public class RetroSun extends PApplet {
 			color(217, 0, 151) };
 
 	int bgColor = color(31, 0, 48);
-	int sunTopY = sunColors[0];
-	int sunBottomY = (sunColors[sunColors.length - 1]);
+	int sunTopY = (int) (height/2 - sunRadius);
+	int sunBottomY = (int) (height/2 + sunRadius);
 
 	@Override
 	public void settings() {
@@ -114,14 +115,16 @@ public class RetroSun extends PApplet {
 		// Set the fill color to the background color
 fill(bgColor);
 		rect(x, y, w, h);
+		rect(x, y + 50, w,h);
+		rect(x,y + 300, w,h);
 		
-		if(y >= -50) {
+		if(y >= 300) {
 			y-=1;
-			h = map(y, y, y+h, 1, 40);
+			h -= 40/(sunRadius + (sunRadius/4));
 		}
 		else {
 			y = 650;
-			h = 400;
+			h = 40;
 		}
 		// To draw each rectangle we need to find its x, y, width, height
 		// *The y position can be any value within the sun:
@@ -167,15 +170,18 @@ fill(bgColor);
 
 		/*
 		 * PART 5: Managing the missing sun sections
+		 
 		 *
 		 * Using a list to manage moving multiple missing sun sections
 		 */
-
+             
 		// Figure out how to create the other missing sun sections using the
 		// code you wrote for the 1 missing sun section.
 		// HINT: You can use the Rectangle class defined below to create
 		// a list of Rectangles.
-
+		ArrayList<Rectangle> sections = new ArrayList<Rectangle>();
+		   Rectangle r = new Rectangle(0,0,0,0);
+		   sections.add(r);
 		/*
 		 * PART 6: Adding extras
 		 *
@@ -219,5 +225,7 @@ fill(bgColor);
 			this.w = w;
 			this.h = h;
 		}
+		
 	}
+	
 }
