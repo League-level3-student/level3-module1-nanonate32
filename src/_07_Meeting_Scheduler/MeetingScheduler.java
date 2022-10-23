@@ -1,5 +1,6 @@
 package _07_Meeting_Scheduler;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MeetingScheduler {
@@ -23,10 +24,20 @@ public class MeetingScheduler {
      * Time availability always represents 1 hour
      * Assume both schedules are in the same time zones
      */
-	 HashMap<String, Integer> availability = new HashMap <String,Integer>();
+	
     public static Schedule getMutualAvailability(Schedule person1, Schedule person2) {
-       
-        return null;
-        
-    }
+    	 Schedule schedule = new Schedule();
+    	 HashMap<String, ArrayList<Integer>> weeklyAvailability = schedule.getSchedule();
+         schedule.printSchedule();
+         for (String day: weeklyAvailability.keySet()) {
+			ArrayList week = weeklyAvailability.get(day);
+			for(int i = 0; i < week.size(); i++) {
+	        	 
+	         }
+	       	        
+	    }
+         return schedule;
+
+		}
+         
 }
