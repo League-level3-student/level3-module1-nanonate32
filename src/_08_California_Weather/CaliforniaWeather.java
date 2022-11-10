@@ -1,5 +1,6 @@
 package _08_California_Weather;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.JOptionPane;
@@ -34,23 +35,31 @@ public class CaliforniaWeather {
     
     void start() {
     	
-    	String city = JOptionPane.showInputDialog("What city do you want to search for?");
+    	//String city = JOptionPane.showInputDialog("What city do you want to search for?");
     	String weatherCondition = JOptionPane.showInputDialog("What is the weather condition you are searching for?");
         HashMap<String, WeatherData> weatherData = Utilities.getWeatherData();
        
-        System.out.println(weatherData);
+        
         // All city keys have the first letter capitalized of each word
-        String cityName = Utilities.capitalizeWords( city );
-        WeatherData datum = weatherData.get(cityName);
-        for(String weatherCircumstances :weatherData.keySet()) {
-         	if(datum.weatherSummary.equalsIgnoreCase(weatherCondition)) {
-         		System.out.println(city);
+        
+        //WeatherData datum = weatherData.get(cityName);
+        ArrayList<String> cities = new ArrayList<String>();
+        for(String city :weatherData.keySet()) {
+        	//String cityName = Utilities.capitalizeWords( city );
+        	//WeatherData datum = weatherData.get(cityName);
+        	//String condition = datum.weatherSummary;
+        	
+         	if(weatherData.get(city).weatherSummary.equalsIgnoreCase(weatherCondition))  {
+         		
+         		cities.add(city);
+         		
          	}
         }
-        if( datum == null ) {
+        System.out.println(cities);
+        //if( datum == null ) {
         	
-        } else {
-            System.out.println(cityName + " is " + datum.weatherSummary + " with a temperature of " + datum.temperatureF + " F");
-        }
+        //} else {
+           // System.out.println(cityName + " is " + datum.weatherSummary + " with a temperature of " + datum.temperatureF + " F");
+        //}
     }
 }
