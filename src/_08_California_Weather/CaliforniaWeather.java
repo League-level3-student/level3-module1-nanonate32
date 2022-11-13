@@ -36,7 +36,12 @@ public class CaliforniaWeather {
     void start() {
     	
     	//String city = JOptionPane.showInputDialog("What city do you want to search for?");
-    	String weatherCondition = JOptionPane.showInputDialog("What is the weather condition you are searching for?");
+    	//String weatherCondition = JOptionPane.showInputDialog("What is the weather condition you are searching for?");
+    	String maxTemp = JOptionPane.showInputDialog("What is the max temperature you are searching for?");
+    	String minTemp = JOptionPane.showInputDialog("What is the min temperature you are searching for?");
+    	int maxT = Integer.parseInt(maxTemp);
+    	int minT = Integer.parseInt(minTemp);
+    	
         HashMap<String, WeatherData> weatherData = Utilities.getWeatherData();
        
         
@@ -46,20 +51,25 @@ public class CaliforniaWeather {
         ArrayList<String> cities = new ArrayList<String>();
         for(String city :weatherData.keySet()) {
         	//String cityName = Utilities.capitalizeWords( city );
-        	//WeatherData datum = weatherData.get(cityName);
-        	//String condition = datum.weatherSummary;
+        	WeatherData datum = weatherData.get(city);
+        	String weather = datum.weatherSummary;
         	
-         	if(weatherData.get(city).weatherSummary.equalsIgnoreCase(weatherCondition))  {
+         //	if(weather.toLowerCase().contains(weatherCondition.toLowerCase()))  {
          		
-         		cities.add(city);
+         	//System.out.println("City with " + weatherCondition + " weather is " + city);
          		
-         	}
+         	//}
+        	if(datum.temperatureF > minT && datum.temperatureF < maxT) {
+        		System.out.println(city + " " + datum.temperatureF );
+        	}
         }
-        System.out.println(cities);
+        
+        
         //if( datum == null ) {
         	
         //} else {
            // System.out.println(cityName + " is " + datum.weatherSummary + " with a temperature of " + datum.temperatureF + " F");
         //}
+        
     }
 }
