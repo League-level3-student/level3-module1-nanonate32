@@ -3,10 +3,12 @@ package _09_World_Clocks;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.TimeZone;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.Timer;
@@ -46,7 +48,13 @@ public class WorldClocks implements ActionListener {
     String city;
     String dateStr;
     String timeStr;
-    
+    void start() {
+    String cityInput = JOptionPane.showInputDialog("What city would you like to add to the display?");
+    HashMap<String, TimeZone> clockData = new HashMap<String, TimeZone>();
+    for(String city : clockData.keySet()) {
+    	
+    }
+    }
     public WorldClocks() {
         clockUtil = new ClockUtilities();
 
