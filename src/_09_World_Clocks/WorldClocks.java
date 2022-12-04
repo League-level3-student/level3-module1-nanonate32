@@ -60,8 +60,11 @@ public class WorldClocks implements ActionListener {
         panel.add(textArea);
         textArea.setText(city + "\n" + dateStr);
     String cityInput = JOptionPane.showInputDialog("What city would you like to add to the display?");
+    
     HashMap<String, TimeZone> clockData = new HashMap<String, TimeZone>();
-    for(String city : clockData.keySet()) {
+    clockUtil = new ClockUtilities();
+    for(String city : clockUtil.cityCoordinates.keySet()) {
+    	
     	timeZone = clockUtil.getTimeZoneFromCityName(cityInput);
     	Calendar calendar = Calendar.getInstance(timeZone);
         String month = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
