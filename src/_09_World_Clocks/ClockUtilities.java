@@ -22,7 +22,7 @@ public class ClockUtilities {
     public static String apiKey = "ZCBUZFXAIL6T";
     Long lastApiRequestTimeMs = null;
 
-    public HashMap<String, Coordinate> cityCoordinates = null;
+    private HashMap<String, Coordinate> cityCoordinates = null;
 
     public ClockUtilities() {
         cityCoordinates = new HashMap<>();
