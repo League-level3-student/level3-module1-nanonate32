@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -44,26 +45,28 @@ public class WorldClocks implements ActionListener {
     JFrame frame;
     JPanel panel;
     JTextArea textArea;
-    
+    JButton cityAsk;
     String city;
     String dateStr;
     String timeStr;
-    
+    String cityInput;
     void start() {
     	frame = new JFrame();
         panel = new JPanel();
+        cityAsk = new JButton("Add City");
         textArea = new JTextArea();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.setSize(100, 100);
         frame.add(panel);
         panel.add(textArea);
+        cityAsk.addActionListener(this);
         textArea.setText(city + "\n" + dateStr);
-    String cityInput = JOptionPane.showInputDialog("What city would you like to add to the display?");
+      cityInput = JOptionPane.showInputDialog("What city would you like to add to the display?");
     
     HashMap<String, TimeZone> clockData = new HashMap<String, TimeZone>();
     clockUtil = new ClockUtilities();
-    for(String city : clockUtil.cityCoordinates.keySet()) {
+    
     	
     	timeZone = clockUtil.getTimeZoneFromCityName(cityInput);
     	Calendar calendar = Calendar.getInstance(timeZone);
@@ -71,8 +74,10 @@ public class WorldClocks implements ActionListener {
         String dayOfWeek = calendar.getDisplayName( Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault());
         dateStr = dayOfWeek + " " + month + " " + calendar.get(Calendar.DAY_OF_MONTH) + " " + calendar.get(Calendar.YEAR);
     	System.out.println(dateStr);
+    	timer = new Timer(1000, this);
+        timer.start();
     }
-    }
+    
     public WorldClocks() {
         clockUtil = new ClockUtilities();
 
@@ -105,6 +110,8 @@ public class WorldClocks implements ActionListener {
         
         System.out.println(timeStr);
         textArea.setText(city + "\n" + dateStr + "\n" + timeStr);
+        textArea.setText(cityInput + "\n" + dateStr + "\n" + timeStr);
         frame.pack();
     }
+ 
 }
